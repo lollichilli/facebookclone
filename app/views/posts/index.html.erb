@@ -1,0 +1,19 @@
+<%= stylesheet_link_tag("post")%>
+<% if user_signed_in? %>
+  <% current_user.follow_requests.each do |request| %>
+    <%= request.followerable.email%> Wants to follow you 
+    <%= button_to "Accept", accept_path(request.followerable)%> 
+    <%= button_to "Decline", decline_path(request.followerable)%>
+  <% end %>
+
+<% end %>
+
+<p style="color: green"><%= notice %></p>
+<div class="row">
+  <div id="posts" class="text-center">
+  <% @posts.each do |post| %>
+  <%= render post %>
+<% end %>
+
+
+
